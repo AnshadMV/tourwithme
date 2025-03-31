@@ -669,6 +669,113 @@
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
+/* Contact Section */
+.contact {
+    background-color: var(--white);
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+}
+
+.contact-info {
+    background-color: var(--light-green);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.contact-info h3 {
+    color: var(--primary-green);
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+}
+
+.contact-info ul {
+    list-style: none;
+}
+
+.contact-info ul li {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    color: var(--text-medium);
+}
+
+.contact-info ul li i {
+    margin-right: 15px;
+    color: var(--accent-green);
+    font-size: 1.2rem;
+    width: 25px;
+    text-align: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: var(--white);
+    border-radius: 50%;
+    transition: var(--transition);
+    color: var(--accent-green);
+    font-size: 1.2rem;
+    box-shadow: var(--shadow);
+}
+
+.social-links a:hover {
+    background-color: var(--accent-green);
+    color: var(--white);
+    transform: translateY(-5px);
+}
+
+.contact-form {
+    background-color: var(--light-gray);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.contact-form h3 {
+    color: var(--primary-green);
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
         /* Footer */
         footer {
             background-color: var(--dark-green);
@@ -1190,7 +1297,46 @@
         </div>
     </div>
 </section>
-
+<!-- Contact Section -->
+<section class="contact" id="contact">
+    <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-container">
+            <!-- <div class="contact-info">
+                <h3>Contact Information</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +91 9400300166</li>
+                    <li><i class="fas fa-envelope"></i> info@tourwithme.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Malappuram, Kerala, India</li>
+                </ul>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div> -->
+            <div class="contact-form">
+                <h3>Send Us a Message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" placeholder="Your Mobile Number" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" placeholder="Your Message" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- Newsletter Section -->
 <section class="newsletter" id="contact">
     <div class="container">
@@ -1203,6 +1349,7 @@
     </div>
 </section>
 
+
 <!-- Footer -->
 <footer>
     <div class="container">
@@ -1214,12 +1361,13 @@
             <div class="footer-col">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#home"><i class="fas fa-home"></i>Home</a></li>
-                    <li><a href="#packages"><i class="fas fa-ticket-alt"></i>Packages</a></li>
-                    <li><a href="#destinations"><i class="fas fa-map"></i>Destinations</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="offers.html">Special Offers</a></li>
-                    <li><a href="#testimonials"><i class="fas fa-star"></i>Testimonials</a></li>
+                    <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+<li><a href="#packages"><i class="fas fa-ticket-alt"></i> Packages</a></li>
+<li><a href="#destinations"><i class="fas fa-map-marked-alt"></i> Destinations</a></li>
+<li><a href="#gallery"><i class="fas fa-images"></i> Gallery</a></li>
+<li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
+<li><a href="#testimonials"><i class="fas fa-star"></i> Testimonials</a></li>
+
                 </ul>
             </div>
             <div class="footer-col">
@@ -1247,10 +1395,8 @@
 <div class="scroll-top">
     <i class="fas fa-arrow-up"></i>
 </div>
-
-<!-- JavaScript -->
 <script>
-    // [JavaScript remains unchanged]
+    // Mobile Menu Toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
 
@@ -1259,27 +1405,22 @@
         mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
         mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
     });
-    // Close mobile menu when clicking any nav link
-    document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        mobileMenuBtn.querySelector('i').classList.add('fa-bars');
-        mobileMenuBtn.querySelector('i').classList.remove('fa-times');
-     });
-    });
+
     // Close mobile menu when clicking any nav link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', (e) => {
-        // Only close menu if it's an internal link (starts with #)
-        if (!link.getAttribute('href').startsWith('#')) {
-            return;
-        }
-        
-        navLinks.classList.remove('active');
-        mobileMenuBtn.querySelector('i').classList.add('fa-bars');
-        mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+            // Only close menu if it's an internal link (starts with #)
+            if (!link.getAttribute('href').startsWith('#')) {
+                return;
+            }
+            
+            navLinks.classList.remove('active');
+            mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+            mobileMenuBtn.querySelector('i').classList.remove('fa-times');
         });
     });
+
+    // Header scroll effect
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -1289,6 +1430,7 @@
         }
     });
 
+    // Scroll to top button
     const scrollTopBtn = document.querySelector('.scroll-top');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) {
@@ -1302,6 +1444,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // Animate elements on scroll
     const animateElements = document.querySelectorAll('.package-card, .destination-card, .testimonial-card');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1312,6 +1455,63 @@
     }, { threshold: 0.3 });
 
     animateElements.forEach(element => observer.observe(element));
+
+    // Contact form submission
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value || "I'm interested with you";
+            
+            // Send via WhatsApp
+            const whatsappUrl = `https://wa.me/7558031518?text=Name: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0APhone: ${encodeURIComponent(phone)}%0AMessage: ${encodeURIComponent(message)}`;
+            
+            // Send via Email (mailto link)
+            const emailSubject = "New Contact Form Submission";
+            const emailBody = `Name: ${name}%0D%0AEmail: ${email}%0D%0APhone: ${phone}%0D%0AMessage: ${message}`;
+            const emailUrl = `mailto:info@tourwithme.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Try to open WhatsApp first, fall back to email
+            window.open(whatsappUrl, '_blank');
+            
+            // Show success message
+            alert('Thank you for your interest! We have received your message and will contact you soon.');
+            
+            // Reset form
+            contactForm.reset();
+        });
+    }
+
+    // Newsletter form submission
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = newsletterForm.querySelector('input[type="email"]').value;
+            
+            // Send via WhatsApp
+            const whatsappUrl = `https://wa.me/919400300166?text=I'm interested in your newsletter! Please add me to your mailing list.%0AEmail: ${encodeURIComponent(email)}`;
+            
+            // Send via Email (mailto link)
+            const emailSubject = "Newsletter Subscription Request";
+            const emailBody = `Please add this email to your newsletter mailing list: ${email}`;
+            const emailUrl = `mailto:info@tourwithme.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Try to open WhatsApp first, fall back to email
+            window.open(whatsappUrl, '_blank');
+            
+            // Show success message
+            alert('Thank you for subscribing to our newsletter!');
+            
+            // Reset form
+            newsletterForm.reset();
+        });
+    }
 </script>
 </body>
 </html>
