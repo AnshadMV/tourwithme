@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Offers - TourWithMe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Color Variables */
+        :root {
+            --primary-green: #2E8B57;
+            --light-green: #E8F5E9;
+            --accent-green: #4CAF50;
+            --dark-green: #1B5E20;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --text-dark: #263238;
+            --text-medium: #455A64;
+            --text-light: #78909C;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--white);
+            color: var(--text-medium);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-green), var(--accent-green));
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--primary-green);
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-accent {
+            background-color: var(--accent-green);
+        }
+
+        .btn-accent:hover {
+            background-color: #3d8b40;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.08);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            color: var(--accent-green);
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-green);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Offers Section */
+        .offers {
+            padding-top: 150px;
+            background-color: var(--light-gray);
+        }
+
+        .search-filter-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 25px 15px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-green);
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            box-shadow: var(--shadow);
+            background-color: var(--white);
+            color: var(--text-medium);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-select:focus {
+            outline: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .offers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .offer-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .offer-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .offer-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .offer-card:hover .offer-img img {
+            transform: scale(1.1);
+        }
+
+        .offer-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent-green);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .offer-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .offer-content h3 {
+            color: var(--primary-green);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .offer-content .location {
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .offer-content .location i {
+            margin-right: 8px;
+        }
+
+        .offer-content p {
+            margin-bottom: 20px;
+            color: var(--text-medium);
+            flex: 1;
+        }
+
+        .offer-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .offer-info div {
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .offer-info i {
+            color: var(--accent-green);
+            margin-right: 8px;
+            font-size: 1rem;
+        }
+
+        .offer-price {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .current-price {
+            font-weight: 700;
+            color: var(--primary-green);
+            font-size: 1.5rem;
+        }
+
+        .original-price {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .discount {
+            color: #e53935;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .offer-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .offer-expiry {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .offer-expiry span {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 10px;
+        }
+
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: var(--white);
+            color: var(--text-medium);
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .page-btn.active {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+
+        .page-btn:hover:not(.active) {
+            background-color: var(--light-green);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-green);
+            color: var(--white);
+            padding: 80px 0 30px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary-green), var(--accent-green));
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            color: var(--white);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-green);
+        }
+
+        .footer-col p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            transition: all 0.3s ease;
+            opacity: 0.8;
+            display: block;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--white);
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        .footer-col ul li i {
+            margin-right: 8px;
+            color: var(--accent-green);
+            width: 20px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-green);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-green);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            section {
+                padding: 80px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 100px 40px 40px;
+                transition: var(--transition);
+                box-shadow: 5px 0 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .search-filter-container {
+                flex-direction: column;
+            }
+
+            .search-box, .filter-controls {
+                width: 100%;
+            }
+
+            .offers-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .filter-controls {
+                flex-direction: column;
+            }
+
+            .filter-select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-leaf"></i>TourWithMe
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#packages">Packages</a></li>
+                    <li><a href="index.html#destinations">Destinations</a></li>    
+                    <li><a href="index.html#gallery">Gallery</a></li>
+                    <li><a href="offers.html" class="active">Special Offers</a></li>
+                    <li><a href="index.html#testimonials">Testimonials</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Offers Section -->
+    <section class="offers" id="offers">
+        <div class="container">
+            <h2 class="section-title">Special Offers</h2>
+            
+            <!-- Search and Filter Section -->
+            <div class="search-filter-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search offers...">
+                </div>
+                <div class="filter-controls">
+                    <select class="filter-select" id="sort-by">
+                        <option value="">Sort By</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="discount">Highest Discount</option>
+                        <option value="duration">Duration</option>
+                    </select>
+                    <select class="filter-select" id="filter-type">
+                        <option value="">All Types</option>
+                        <option value="backwaters">Backwaters</option>
+                        <option value="hills">Hill Stations</option>
+                        <option value="wildlife">Wildlife</option>
+                        <option value="beach">Beach</option>
+                        <option value="cultural">Cultural</option>
+                    </select>
+                    <select class="filter-select" id="filter-duration">
+                        <option value="">Any Duration</option>
+                        <option value="1-3">1-3 Days</option>
+                        <option value="4-7">4-7 Days</option>
+                        <option value="8+">8+ Days</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Offers Grid -->
+            <div class="offers-container" id="offers-container">
+                <!-- Offer 1 -->
+                <div class="offer-card" data-type="backwaters" data-duration="3" data-price="3999" data-discount="20">
+                    <div class="offer-img">
+                        <img src="https://img.freepik.com/premium-photo/aerial-view-traditional-indian-houseboat-near-alleppey-kerala-backwaters_636537-282237.jpg" alt="Backwaters Special">
+                        <span class="offer-badge">Limited Time</span>
+                    </div>
+                    <div class="offer-content">
+                        <h3>Backwaters Special</h3>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i> Alleppey, Kerala
+                        </div>
+                        <p>Enjoy a 2-night luxury houseboat cruise with all meals included. Special discounted rate for bookings this month.</p>
+                        <div class="offer-info">
+                            <div><i class="fas fa-calendar-alt"></i> 3 Days</div>
+                            <div><i class="fas fa-users"></i> 2-4 People</div>
+                        </div>
+                        <div class="offer-price">
+                            <span class="current-price">₹3,999 <span class="discount">20% OFF</span></span>
+                            <span class="original-price">₹4,999</span>
+                        </div>
+                        <div class="offer-actions">
+                            <div class="offer-expiry">Expires in: <span>5 days</span></div>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Offer 2 -->
+                <div class="offer-card" data-type="hills" data-duration="5" data-price="7999" data-discount="15">
+                    <div class="offer-img">
+                        <img src="https://img.freepik.com/premium-photo/green-tea-plantations-munnar-kerala-india_163782-3906.jpg" alt="Munnar Hill Retreat">
+                        <span class="offer-badge">Family Deal</span>
+                    </div>
+                    <div class="offer-content">
+                        <h3>Munnar Hill Retreat</h3>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i> Munnar, Kerala
+                        </div>
+                        <p>5-day hill station package with stays at premium resorts, tea plantation tours, and guided nature walks.</p>
+                        <div class="offer-info">
+                            <div><i class="fas fa-calendar-alt"></i> 5 Days</div>
+                            <div><i class="fas fa-users"></i> 2-6 People</div>
+                        </div>
+                        <div class="offer-price">
+                            <span class="current-price">₹7,999 <span class="discount">15% OFF</span></span>
+                            <span class="original-price">₹9,399</span>
+                        </div>
+                        <div class="offer-actions">
+                            <div class="offer-expiry">Expires in: <span>12 days</span></div>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Offer 3 -->
+                <div class="offer-card" data-type="wildlife" data-duration="4" data-price="5999" data-discount="25">
+                    <div class="offer-img">
+                        <img src="https://img.freepik.com/free-photo/beautiful-shot-waterfall-forest_181624-27884.jpg" alt="Wildlife Adventure">
+                        <span class="offer-badge">Flash Sale</span>
+                    </div>
+                    <div class="offer-content">
+                        <h3>Wildlife Adventure</h3>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i> Periyar, Kerala
+                        </div>
+                        <p>4-day jungle safari package with bamboo rafting, nature walks, and spice plantation tour. Limited slots available!</p>
+                        <div class="offer-info">
+                            <div><i class="fas fa-calendar-alt"></i> 4 Days</div>
+                            <div><i class="fas fa-users"></i> 4-8 People</div>
+                        </div>
+                        <div class="offer-price">
+                            <span class="current-price">₹5,999 <span class="discount">25% OFF</span></span>
+                            <span class="original-price">₹7,999</span>
+                        </div>
+                        <div class="offer-actions">
+                            <div class="offer-expiry">Expires in: <span>2 days</span></div>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Offer 4 -->
+                <div class="offer-card" data-type="beach" data-duration="7" data-price="10999" data-discount="30">
+                    <div class="offer-img">
+                        <img src="https://img.freepik.com/free-photo/beautiful-luxury-hotel-swimming-pool-resort_74190-1678.jpg" alt="Beach Paradise">
+                        <span class="offer-badge">Early Bird</span>
+                    </div>
+                    <div class="offer-content">
+                        <h3>Beach Paradise</h3>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i> Kovalam, Kerala
+                        </div>
+                        <p>7-day beach vacation with luxury resort stay, Ayurvedic spa treatments, and water sports activities.</p>
+                        <div class="offer-info">
+                            <div><i class="fas fa-calendar-alt"></i> 7 Days</div>
+                            <div><i class="fas fa-users"></i> 2-4 People</div>
+                        </div>
+                        <div class="offer-price">
+                            <span class="current-price">₹10,999 <span class="discount">30% OFF</span></span>
+                            <span class="original-price">₹15,699</span>
+                        </div>
+                        <div class="offer-actions">
+                            <div class="offer-expiry">Expires in: <span>7 days</span></div>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Offer 5 -->
+                <div class="offer-card" data-type="cultural" data-duration="6" data-price="8999" data-discount="10">
+                    <div class="offer-img">
+                        <img src="https://img.freepik.com/free-photo/beautiful-shot-kathakali-dancer-performing-traditional-dance_181624-28017.jpg" alt="Cultural Experience">
+                        <span class="offer-badge">New Offer</span>
+                    </div>
+                    <div class="offer-content">
+                        <h3>Cultural Experience</h3>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i> Kochi, Kerala
+                        </div>
+                        <p>6-day cultural tour featuring Kathakali performances, heritage walks, and traditional Kerala cuisine.</p>
+                        <div class="offer-info">
+                            <div><i class="fas fa-calendar-alt"></i> 6 Days</div>
+                            <div><i class="fas fa-users"></i> 2-6 People</div>
+                        </div>
+                        <div class="offer-price">
+                            <span class="current-price">₹8,999 <span class="discount">10% OFF</span></span>
+                            <span class="original-price">₹9,999</span>
+                        </div>
+                        <div class="offer-actions">
+                            <div class="offer-expiry">Expires in: <span>15 days</span></div>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Offer 6 -->
+                <div class="offer-card" data-type="backwaters" data-duration="4" data-price="6999" data-discount="18">
+                    <div class="offer-img">
+                        <img src="https://img.freepik.com/premium-photo/houseboat-alappuzha-backwaters-kerala_78361-13386.jpg" alt="Premium Backwaters">
+                        <span class="offer-badge">Exclusive</span>
+                    </div>
+                    <div class="offer-content">
+                        <h3>Premium Backwaters</h3>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i> Kumarakom, Kerala
+                        </div>
+                        <p>4-day premium houseboat experience with private chef, sunset cruises, and village canoe tours.</p>
+                        <div class="offer-info">
+                            <div><i class="fas fa-calendar-alt"></i> 4 Days</div>
+                            <div><i class="fas fa-users"></i> 2-4 People</div>
+                        </div>
+                        <div class="offer-price">
+                            <span class="current-price">₹6,999 <span class="discount">18% OFF</span></span>
+                            <span class="original-price">₹8,499</span>
+                        </div>
+                        <div class="offer-actions">
+                            <div class="offer-expiry">Expires in: <span>10 days</span></div>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination">
+                <div class="page-btn active">1</div>
+                <div class="page-btn">2</div>
+                <div class="page-btn">3</div>
+                <div class="page-btn">4</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>About TourWithMe</h3>
+                    <p>Discover Kerala's beauty with our curated tours. We bring you the best of nature, culture, and adventure.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html#home"><i class="fas fa-home"></i>Home</a></li>
+                        <li><a href="index.html#packages"><i class="fas fa-ticket-alt"></i>Packages</a></li>
+                        <li><a href="index.html#destinations"><i class="fas fa-map"></i>Destinations</a></li>
+                        <li><a href="index.html#gallery"><i class="fas fa-images"></i>Gallery</a></li>
+                        <li><a href="offers.html"><i class="fas fa-percentage"></i>Special Offers</a></li>
+                        <li><a href="index.html#testimonials"><i class="fas fa-star"></i>Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i>+91 9400300166</li>
+                        <li><i class="fas fa-envelope"></i>info@tourwithme.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i>Malappuram, Kerala, India</li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TourWithMe. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+    
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+        });
+    
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+            });
+        });
+    
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    
+        // Scroll to top button
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('active');
+            } else {
+                scrollTopBtn.classList.remove('active');
+            }
+        });
+    
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    
+        // Search, Filter, and Pagination Functionality
+        const searchInput = document.getElementById('search-input');
+        const sortBySelect = document.getElementById('sort-by');
+        const filterTypeSelect = document.getElementById('filter-type');
+        const filterDurationSelect = document.getElementById('filter-duration');
+        const offersContainer = document.getElementById('offers-container');
+        const paginationContainer = document.querySelector('.pagination');
+        const offerCards = Array.from(document.querySelectorAll('.offer-card'));
+        const itemsPerPage = 3; // Number of offers per page
+        let currentPage = 1;
+    
+        function filterAndSortOffers() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const sortValue = sortBySelect.value;
+            const filterTypeValue = filterTypeSelect.value;
+            const filterDurationValue = filterDurationSelect.value;
+    
+            // Filter by search term, type, and duration
+            let filteredOffers = offerCards.filter(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const location = card.querySelector('.location').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                const type = card.dataset.type;
+                const duration = parseInt(card.dataset.duration);
+    
+                const matchesSearch = title.includes(searchTerm) || 
+                                     location.includes(searchTerm) || 
+                                     description.includes(searchTerm);
+                const matchesType = filterTypeValue ? type === filterTypeValue : true;
+                
+                let matchesDuration = true;
+                if (filterDurationValue) {
+                    if (filterDurationValue === '1-3') {
+                        matchesDuration = duration <= 3;
+                    } else if (filterDurationValue === '4-7') {
+                        matchesDuration = duration >= 4 && duration <= 7;
+                    } else if (filterDurationValue === '8+') {
+                        matchesDuration = duration >= 8;
+                    }
+                }
+    
+                return matchesSearch && matchesType && matchesDuration;
+            });
+    
+            // Sort the filtered offers
+            filteredOffers.sort((a, b) => {
+                const priceA = parseInt(a.dataset.price);
+                const priceB = parseInt(b.dataset.price);
+                const discountA = parseInt(a.dataset.discount);
+                const discountB = parseInt(b.dataset.discount);
+                const durationA = parseInt(a.dataset.duration);
+                const durationB = parseInt(b.dataset.duration);
+    
+                if (sortValue === 'price-asc') {
+                    return priceA - priceB;
+                } else if (sortValue === 'price-desc') {
+                    return priceB - priceA;
+                } else if (sortValue === 'discount') {
+                    return discountB - discountA;
+                } else if (sortValue === 'duration') {
+                    return durationA - durationB;
+                }
+                return 0;
+            });
+    
+            return filteredOffers;
+        }
+    
+        function updatePagination(filteredOffers) {
+            const totalPages = Math.ceil(filteredOffers.length / itemsPerPage);
+            
+            // Clear existing pagination buttons
+            paginationContainer.innerHTML = '';
+    
+            // Generate new pagination buttons
+            for (let i = 1; i <= totalPages; i++) {
+                const pageBtn = document.createElement('div');
+                pageBtn.classList.add('page-btn');
+                pageBtn.textContent = i;
+                if (i === currentPage) {
+                    pageBtn.classList.add('active');
+                }
+                pageBtn.addEventListener('click', () => {
+                    currentPage = i;
+                    displayOffers();
+                });
+                paginationContainer.appendChild(pageBtn);
+            }
+    
+            // Hide pagination if there's only one page or no results
+            paginationContainer.style.display = totalPages <= 1 ? 'none' : 'flex';
+        }
+    
+        function displayOffers() {
+            const filteredOffers = filterAndSortOffers();
+            
+            // Update pagination
+            updatePagination(filteredOffers);
+    
+            // Calculate the offers to display for the current page
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const offersToDisplay = filteredOffers.slice(startIndex, endIndex);
+    
+            // Clear the container
+            offersContainer.innerHTML = '';
+    
+            // Add offers to the container
+            if (offersToDisplay.length > 0) {
+                offersToDisplay.forEach(card => offersContainer.appendChild(card));
+            } else {
+                offersContainer.innerHTML = '<p class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--text-medium);">No offers match your search criteria. Please try different filters.</p>';
+            }
+        }
+    
+        // Add event listeners to trigger filtering and pagination
+        searchInput.addEventListener('input', () => {
+            currentPage = 1; // Reset to first page on new search
+            displayOffers();
+        });
+        sortBySelect.addEventListener('change', () => {
+            currentPage = 1; // Reset to first page on sort
+            displayOffers();
+        });
+        filterTypeSelect.addEventListener('change', () => {
+            currentPage = 1; // Reset to first page on filter
+            displayOffers();
+        });
+        filterDurationSelect.addEventListener('change', () => {
+            currentPage = 1; // Reset to first page on filter
+            displayOffers();
+        });
+    
+        // Initial call to display offers
+        displayOffers();
+    </script>
