@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TourWithMe - Explore Kerala's Wonders</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Color Variables */
+        :root {
+            --primary-green: #2E8B57; /* More vibrant green */
+            --light-green: #E8F5E9;
+            --accent-green: #4CAF50;
+            --dark-green: #1B5E20;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --text-dark: #263238;
+            --text-medium: #455A64;
+            --text-light: #78909C;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--white);
+            color: var(--text-medium);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-green), var(--accent-green));
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--primary-green);
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-accent {
+            background-color: var(--accent-green);
+        }
+
+        .btn-accent:hover {
+            background-color: #3d8b40;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.08);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            color: var(--accent-green);
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-green);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: 
+                        url('https://img.freepik.com/free-photo/india-fog-tea-cool-tea-leaves_1376-20.jpg?t=st=1743412648~exp=1743416248~hmac=1daff77e75d86a49628605999e8350c55ded8f51a6f4a9f2a867bacbd09750bf&w=1380');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            min-height: 800px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            opacity: 0.9;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Packages Section */
+        .packages {
+            background-color: var(--light-gray);
+        }
+
+        .packages-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .package-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .package-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .package-card:nth-child(1) { transition-delay: 0.1s; }
+        .package-card:nth-child(2) { transition-delay: 0.2s; }
+        .package-card:nth-child(3) { transition-delay: 0.3s; }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .package-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .package-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .package-card:hover .package-img img {
+            transform: scale(1.1);
+        }
+
+        .package-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent-green);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .package-content {
+            padding: 25px;
+        }
+
+        .package-content h3 {
+            color: var(--primary-green);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .package-content .location {
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .package-content .location i {
+            margin-right: 8px;
+        }
+
+        .package-content p {
+            margin-bottom: 20px;
+            color: var(--text-medium);
+        }
+
+        .package-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .package-info div {
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .package-info i {
+            color: var(--accent-green);
+            margin-right: 8px;
+            font-size: 1rem;
+        }
+
+        .package-price {
+            font-weight: 700;
+            color: var(--primary-green);
+            font-size: 1.3rem;
+            text-align: right;
+        }
+
+        .package-price span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 400;
+            display: block;
+        }
+
+        /* Destinations Section */
+        .destinations {
+            background-color: var(--white);
+        }
+
+        .destinations-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .destination-card {
+            position: relative;
+            height: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .destination-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .destination-card:nth-child(1) { transition-delay: 0.1s; }
+        .destination-card:nth-child(2) { transition-delay: 0.2s; }
+        .destination-card:nth-child(3) { transition-delay: 0.3s; }
+        .destination-card:nth-child(4) { transition-delay: 0.4s; }
+
+        .destination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .destination-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .destination-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .destination-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(30, 87, 47, 0.9), transparent);
+            padding: 25px;
+            color: var(--white);
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .destination-card:hover .destination-overlay {
+            transform: translateY(0);
+        }
+
+        .destination-overlay h3 {
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .destination-overlay p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1582979512210-99b6a53386f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover fixed;
+            opacity: 0.03;
+            z-index: 0;
+        }
+
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .testimonial-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .testimonial-card:nth-child(1) { transition-delay: 0.1s; }
+        .testimonial-card:nth-child(2) { transition-delay: 0.2s; }
+        .testimonial-card:nth-child(3) { transition-delay: 0.3s; }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .testimonial-card::before {
+            content: '\201C';
+            font-size: 5rem;
+            color: var(--accent-green);
+            opacity: 0.1;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+            color: var(--text-medium);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 3px solid var(--accent-green);
+        }
+
+        .author-info h4 {
+            color: var(--primary-green);
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .rating {
+            color: #FFD700;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            color: var(--white);
+            text-align: center;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .newsletter::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .newsletter .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 16px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .newsletter-form button {
+            padding: 16px 30px;
+            background-color: var(--accent-green);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .newsletter-form button:hover {
+            background-color: #3d8b40;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-green);
+            color: var(--white);
+            padding: 80px 0 30px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary-green), var(--accent-green));
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            color: var(--white);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-green);
+        }
+
+        .footer-col p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            transition: all 0.3s ease;
+            opacity: 0.8;
+            display: block;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--white);
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        .footer-col ul li i {
+            margin-right: 8px;
+            color: var(--accent-green);
+            width: 20px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-green);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-green);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            section {
+                padding: 80px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 100px 40px 40px;
+                transition: var(--transition);
+                box-shadow: 5px 0 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                min-height: 700px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 80%;
+                margin-bottom: 15px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input {
+                border-radius: 50px;
+                margin-bottom: 10px;
+                padding: 16px 20px;
+            }
+
+            .newsletter-form button {
+                position: relative;
+                top: 0;
+                right: 0;
+                width: 100%;
+                border-radius: 50px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .package-card,
+            .destination-card,
+            .testimonial-card {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-leaf"></i>TourWithMe
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#packages">Packages</a></li>
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Discover Kerala's Natural Wonders</h1>
+            <p>Experience God's Own Country with our expertly crafted tour packages. Explore backwaters, hill stations, wildlife, and rich cultural heritage.</p>
+            <div class="hero-btns">
+                <a href="#packages" class="btn pulse">Explore Packages</a>
+                <a href="#contact" class="btn btn-accent">Book Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Packages Section -->
+<section class="packages" id="packages">
+    <div class="container">
+        <h2 class="section-title">Popular Kerala Packages</h2>
+        <div class="packages-container">
+            <!-- Package 1 -->
+            <div class="package-card">
+                <div class="package-img">
+                    <img src="https://img.freepik.com/premium-photo/aerial-view-traditional-indian-houseboat-near-alleppey-kerala-backwaters_636537-282237.jpg" alt="Kerala Backwaters">
+                    <span class="package-badge">Bestseller</span>
+                </div>
+                <div class="package-content">
+                    <h3>Backwater Bliss</h3>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i> Alleppey, Kerala
+                    </div>
+                    <p>2-night houseboat cruise through Kerala's famous backwaters, including all meals and guided village tours.</p>
+                    <div class="package-info">
+                        <div><i class="fas fa-calendar-alt"></i> 3 Days</div>
+                        <div><i class="fas fa-users"></i> 2-4 People</div>
+                    </div>
+                    <div class="package-price">₹4,999<span>per person</span></div>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <!-- Package 2 -->
+            <div class="package-card">
+                <div class="package-img">
+                    <img src="https://img.freepik.com/premium-photo/green-tea-plantations-munnar-kerala-india_163782-3906.jpg" alt="Munnar Tea Gardens">
+                    <span class="package-badge">Family Favorite</span>
+                </div>
+                <div class="package-content">
+                    <h3>Munnar Tea Trails</h3>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i> Munnar, Kerala
+                    </div>
+                    <p>4-day exploration of tea plantations, waterfalls, and wildlife in Kerala's most beautiful hill station.</p>
+                    <div class="package-info">
+                        <div><i class="fas fa-calendar-alt"></i> 4 Days</div>
+                        <div><i class="fas fa-users"></i> 2-6 People</div>
+                    </div>
+                    <div class="package-price">₹6,500<span>per person</span></div>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <!-- Package 3 -->
+            <div class="package-card">
+                <div class="package-img">
+                    <img src="https://img.freepik.com/free-photo/beautiful-shot-waterfall-forest_181624-27884.jpg" alt="Wildlife Safari">
+                    <span class="package-badge">Adventure</span>
+                </div>
+                <div class="package-content">
+                    <h3>Wildlife Explorer</h3>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i> Periyar, Kerala
+                    </div>
+                    <p>3-day jungle safari in Periyar Tiger Reserve with bamboo rafting, nature walks, and spice plantation tour.</p>
+                    <div class="package-info">
+                        <div><i class="fas fa-calendar-alt"></i> 3 Days</div>
+                        <div><i class="fas fa-users"></i> 4-8 People</div>
+                    </div>
+                    <div class="package-price">₹3,750<span>per person</span></div>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Destinations Section -->
+<section class="destinations" id="destinations">
+    <div class="container">
+        <h2 class="section-title">Must-Visit Kerala Destinations</h2>
+        <div class="destinations-container">
+            <!-- Destination 1 -->
+            <div class="destination-card">
+                <img src="https://img.freepik.com/premium-photo/houseboat-alappuzha-backwaters-kerala_78361-13386.jpg?w=996" alt="Alleppey Backwaters">
+                <div class="destination-overlay">
+                    <h3>Alleppey Backwaters</h3>
+                    <p>Navigate through serene canals and lagoons in traditional houseboats, witnessing village life along the banks.</p>
+                    <a href="#" class="btn">Explore</a>
+                </div>
+            </div>
+
+            <!-- Destination 2 -->
+            <div class="destination-card">
+                <img src="https://img.freepik.com/free-photo/india-fog-tea-cool-tea-leaves_1376-20.jpg?t=st=1743412648~exp=1743416248~hmac=1daff77e75d86a49628605999e8350c55ded8f51a6f4a9f2a867bacbd09750bf&w=1380" alt="Munnar Tea Gardens">
+                <div class="destination-overlay">
+                    <h3>Munnar Tea Gardens</h3>
+                    <p>Rolling hills covered with endless tea plantations, offering breathtaking views and cool mountain air.</p>
+                    <a href="#" class="btn">Explore</a>
+                </div>
+            </div>
+
+            <!-- Destination 3 -->
+            <div class="destination-card">
+                <img src="https://img.freepik.com/premium-photo/beautiful-landscape-mystical-day-with-mountains-lake-travel-background-periyar-national-park_662214-287807.jpg" alt="Periyar">
+                <div class="destination-overlay">
+                    <h3>Periyar Wildlife</h3>
+                    <p>Spot elephants, tigers, and diverse birdlife in this lush reserve surrounding a picturesque lake.</p>
+                    <a href="#" class="btn">Explore</a>
+                </div>
+            </div>
+
+            <!-- Destination 4 -->
+            <div class="destination-card">
+                <img src="https://img.freepik.com/free-photo/beautiful-luxury-hotel-swimming-pool-resort_74190-1678.jpg" alt="Kovalam">
+                <div class="destination-overlay">
+                    <h3>Kovalam Beach</h3>
+                    <p>Relax on golden sands, enjoy Ayurvedic massages, and witness spectacular sunsets over the Arabian Sea.</p>
+                    <a href="#" class="btn">Explore</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials" id="testimonials">
+    <div class="container">
+        <h2 class="section-title">Traveler Experiences</h2>
+        <div class="testimonials-container">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>The backwaters cruise was the highlight of our India trip. Waking up to the sounds of nature and gliding through peaceful canals was magical. Our guide knew all the best spots for birdwatching!</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg" alt="Priya M.">
+                    <div class="author-info">
+                        <h4>Sahad said MT</h4>
+                        <p>From Karuvarakundu</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>Munnar's tea gardens were absolutely stunning! The tour was well-organized, and the stay at the hill resort felt like a dream. Highly recommend this package for nature lovers.</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg" alt="Rahul S.">
+                    <div class="author-info">
+                        <h4>WSF Organizers</h4>
+                        <p>From Pang</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>The wildlife safari in Periyar was thrilling! Seeing elephants up close and the bamboo rafting experience made it unforgettable. TourWithMe made everything seamless.</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg" alt="Anita R.">
+                    <div class="author-info">
+                        <h4>Mohammed Sinan</h4>
+                        <p>From Calicut</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter" id="contact">
+    <div class="container">
+        <h2>Stay Updated</h2>
+        <p>Subscribe to our newsletter for the latest travel deals, tips, and destination guides!</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>About TourWithMe</h3>
+                <p>Discover Kerala's beauty with our curated tours. We bring you the best of nature, culture, and adventure.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home"><i class="fas fa-home"></i>Home</a></li>
+                    <li><a href="#packages"><i class="fas fa-ticket-alt"></i>Packages</a></li>
+                    <li><a href="#destinations"><i class="fas fa-map"></i>Destinations</a></li>
+                    <li><a href="#testimonials"><i class="fas fa-star"></i>Testimonials</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i>+91 9400300166</li>
+                    <li><i class="fas fa-envelope"></i>info@tourwithme.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i>Malappuram, Kerala, India</li>
+                </ul>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 TourWithMe. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Scroll to Top Button -->
+<div class="scroll-top">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<!-- JavaScript -->
+<script>
+    // [JavaScript remains unchanged]
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
+        mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+    });
+
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    const scrollTopBtn = document.querySelector('.scroll-top');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTopBtn.classList.add('active');
+        } else {
+            scrollTopBtn.classList.remove('active');
+        }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    const animateElements = document.querySelectorAll('.package-card, .destination-card, .testimonial-card');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, { threshold: 0.3 });
+
+    animateElements.forEach(element => observer.observe(element));
+</script>
+</body>
+</html>
