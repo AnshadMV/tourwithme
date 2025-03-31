@@ -635,7 +635,40 @@
         .newsletter-form button:hover {
             background-color: #3d8b40;
         }
+/* Gallery Section */
+.gallery {
+    background-color: var(--light-gray);
+}
 
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    height: 250px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
         /* Footer */
         footer {
             background-color: var(--dark-green);
@@ -923,7 +956,9 @@
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#packages">Packages</a></li>
-                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#destinations">Destinations</a></li>    
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="offers.html">Special Offers</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -1065,7 +1100,26 @@
         </div>
     </div>
 </section>
-
+<!-- Gallery Section -->
+<section class="gallery" id="gallery">
+    <div class="container">
+        <h2 class="section-title">Our Journey</h2>
+        <div class="gallery-container">
+            <div class="gallery-item">
+                <img src="https://img.freepik.com/free-photo/beautiful-shot-kathakali-dancer-performing-traditional-dance_181624-28017.jpg" alt="Kathakali Performance">
+            </div>
+            <div class="gallery-item">
+                <img src="https://img.freepik.com/free-photo/young-woman-hiker-taking-photo-with-smartphone-mountains-peak-winter_335224-427.jpg" alt="Houseboat">
+            </div>
+            <div class="gallery-item">
+                <img src="https://img.freepik.com/free-photo/enjoying-street-food-fest_23-2151543792.jpg" alt="Elephants">
+            </div>
+            <div class="gallery-item">
+                <img src="https://img.freepik.com/premium-photo/people-smiling-front-taj-mahal-india_910608-11352.jpg" alt="Kerala Beach">
+            </div>
+        </div>
+    </div>
+</section>
 <!-- Testimonials Section -->
 <section class="testimonials" id="testimonials">
     <div class="container">
@@ -1163,6 +1217,8 @@
                     <li><a href="#home"><i class="fas fa-home"></i>Home</a></li>
                     <li><a href="#packages"><i class="fas fa-ticket-alt"></i>Packages</a></li>
                     <li><a href="#destinations"><i class="fas fa-map"></i>Destinations</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="offers.html">Special Offers</a></li>
                     <li><a href="#testimonials"><i class="fas fa-star"></i>Testimonials</a></li>
                 </ul>
             </div>
@@ -1203,7 +1259,27 @@
         mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
         mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
     });
-
+    // Close mobile menu when clicking any nav link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+        mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+     });
+    });
+    // Close mobile menu when clicking any nav link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', (e) => {
+        // Only close menu if it's an internal link (starts with #)
+        if (!link.getAttribute('href').startsWith('#')) {
+            return;
+        }
+        
+        navLinks.classList.remove('active');
+        mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+        mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+        });
+    });
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
